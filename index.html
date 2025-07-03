@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>予約管理システム</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- ログイン画面 -->
+    <div id="login-container" class="container">
+        <div class="login-box">
+            <h1>予約管理システム</h1>
+            <form id="login-form">
+                <div class="input-group">
+                    <label for="user-id">ID</label>
+                    <input type="text" id="user-id" name="user-id" required>
+                </div>
+                <div class="input-group">
+                    <label for="password">パスワード</label>
+                    <input type="password" id="password" name="password" required>
+                </div>
+                <button type="submit" class="btn btn-primary">ログイン</button>
+            </form>
+            <div id="login-error" class="error-message"></div>
+        </div>
+    </div>
+
+    <!-- メイン管理画面 -->
+    <div id="main-container" class="container hidden">
+        <header class="header">
+            <h1>予約管理システム</h1>
+            <div class="header-actions">
+                <span id="logged-user" class="user-info"></span>
+                <button id="logout-btn" class="btn btn-secondary">ログアウト</button>
+            </div>
+        </header>
+
+        <nav class="nav-tabs">
+            <button class="tab-btn active" data-tab="today">今日の予約</button>
+            <button class="tab-btn" data-tab="upcoming">これからの予約</button>
+            <button class="tab-btn" data-tab="history">予約履歴</button>
+            <button class="tab-btn" data-tab="population">待ち人数</button>
+            <button class="tab-btn" data-tab="settings">設定</button>
+        </nav>
+
+        <main class="main-content">
+            <!-- 今日の予約タブ -->
+            <div id="today-tab" class="tab-content active">
+                <h2>今日の予約 <span id="today-date"></span></h2>
+                <div id="today-reservations" class="reservations-list"></div>
+            </div>
+
+            <!-- これからの予約タブ -->
+            <div id="upcoming-tab" class="tab-content">
+                <h2>これからの予約</h2>
+                <div id="upcoming-reservations" class="reservations-list"></div>
+            </div>
+
+            <!-- 予約履歴タブ -->
+            <div id="history-tab" class="tab-content">
+                <h2>予約履歴</h2>
+                <div id="history-reservations" class="reservations-list"></div>
+            </div>
+
+            <!-- 待ち人数管理タブ -->
+            <div id="population-tab" class="tab-content">
+                <h2>待ち人数管理</h2>
+                <div class="population-control">
+                    <button id="decrease-btn" class="btn btn-secondary population-btn">-</button>
+                    <span id="current-population" class="population-number">0</span>
+                    <button id="increase-btn" class="btn btn-secondary population-btn">+</button>
+                </div>
+                <p class="population-label">現在の待ち人数</p>
+            </div>
+
+            <!-- 設定タブ -->
+            <div id="settings-tab" class="tab-content">
+                <h2>設定</h2>
+                <div class="settings-section">
+                    <h3>パスワード変更</h3>
+                    <form id="password-change-form">
+                        <div class="input-group">
+                            <label for="old-password">現在のパスワード</label>
+                            <input type="password" id="old-password" name="old-password" required>
+                        </div>
+                        <div class="input-group">
+                            <label for="new-password">新しいパスワード</label>
+                            <input type="password" id="new-password" name="new-password" required>
+                        </div>
+                        <div class="input-group">
+                            <label for="confirm-password">新しいパスワード（確認）</label>
+                            <input type="password" id="confirm-password" name="confirm-password" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary">パスワード変更</button>
+                    </form>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- メール送信モーダル -->
+    <div id="email-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>メール送信</h3>
+                <button class="close-btn" onclick="closeEmailModal()">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="email-recipient">
+                    <strong>宛先:</strong> <span id="email-recipient-address"></span>
+                </div>
+                <div class="template-section">
+                    <h4>定型文</h4>
+                    <div id="email-templates" class="template-list"></div>
+                </div>
+                <form id="email-form">
+                    <div class="input-group">
+                        <label for="email-subject">件名</label>
+                        <input type="text" id="email-subject" name="email-subject" required>
+                    </div>
+                    <div class="input-group">
+                        <label for="email-body">本文</label>
+                        <textarea id="email-body" name="email-body" rows="10" required></textarea>
+                    </div>
+                    <div class="modal-actions">
+                        <button type="button" class="btn btn-secondary" onclick="closeEmailModal()">キャンセル</button>
+                        <button type="submit" class="btn btn-primary">送信</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- 確認モーダル -->
+    <div id="confirm-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>確認</h3>
+            </div>
+            <div class="modal-body">
+                <p id="confirm-message"></p>
+                <div class="modal-actions">
+                    <button type="button" class="btn btn-secondary" onclick="closeConfirmModal()">いいえ</button>
+                    <button type="button" class="btn btn-primary" onclick="confirmAction()">はい</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ローディング -->
+    <div id="loading" class="loading hidden">
+        <div class="loading-spinner"></div>
+        <p>処理中...</p>
+    </div>
+
+    <!-- 通知 -->
+    <div id="notification" class="notification hidden">
+        <span id="notification-message"></span>
+        <button class="notification-close" onclick="closeNotification()">&times;</button>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

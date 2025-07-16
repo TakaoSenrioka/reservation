@@ -3,163 +3,409 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>予約管理システム</title>
-    <link rel="stylesheet" href="style.css">
+    <title>サービス満足度アンケート</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <!-- ログイン画面 -->
-    <div id="login-container" class="container">
-        <div class="login-box">
-            <h1>予約管理システム</h1>
-            <form id="login-form">
-                <div class="input-group">
-                    <label for="user-id">ID</label>
-                    <input type="text" id="user-id" name="user-id" required>
+    <div class="container">
+        <!-- Survey Form -->
+        <div class="page active" id="surveyPage">
+            <div class="header">
+                <h1>サービス満足度アンケート</h1>
+                <p>この度は弊社サービスをご利用いただき、ありがとうございました。<br>
+                今後のサービス向上のため、アンケートにご協力をお願いいたします。</p>
+            </div>
+
+            <form id="surveyForm">
+                <!-- 総合満足度 -->
+                <div class="question-group">
+                    <h3>総合満足度</h3>
+                    <p>今回のサービスについて、総合的にどの程度満足されましたか？</p>
+                    <div class="rating-group">
+                        <label class="rating-item">
+                            <input type="radio" name="overall" value="1" required>
+                            <span class="rating-text">1 - 非常に不満</span>
+                        </label>
+                        <label class="rating-item">
+                            <input type="radio" name="overall" value="2" required>
+                            <span class="rating-text">2 - 不満</span>
+                        </label>
+                        <label class="rating-item">
+                            <input type="radio" name="overall" value="3" required>
+                            <span class="rating-text">3 - 普通</span>
+                        </label>
+                        <label class="rating-item">
+                            <input type="radio" name="overall" value="4" required>
+                            <span class="rating-text">4 - 満足</span>
+                        </label>
+                        <label class="rating-item">
+                            <input type="radio" name="overall" value="5" required>
+                            <span class="rating-text">5 - 非常に満足</span>
+                        </label>
+                    </div>
                 </div>
-                <div class="input-group">
-                    <label for="password">パスワード</label>
-                    <input type="password" id="password" name="password" required>
+
+                <!-- スタッフ対応 -->
+                <div class="question-group">
+                    <h3>スタッフの対応</h3>
+                    <p>スタッフの対応はいかがでしたか？</p>
+                    <div class="rating-group">
+                        <label class="rating-item">
+                            <input type="radio" name="staff" value="1" required>
+                            <span class="rating-text">1 - 非常に不満</span>
+                        </label>
+                        <label class="rating-item">
+                            <input type="radio" name="service" value="2" required>
+                            <span class="rating-text">2 - 不満</span>
+                        </label>
+                        <label class="rating-item">
+                            <input type="radio" name="staff" value="3" required>
+                            <span class="rating-text">3 - 普通</span>
+                        </label>
+                        <label class="rating-item">
+                            <input type="radio" name="staff" value="4" required>
+                            <span class="rating-text">4 - 満足</span>
+                        </label>
+                        <label class="rating-item">
+                            <input type="radio" name="staff" value="5" required>
+                            <span class="rating-text">5 - 非常に満足</span>
+                        </label>
+                    </div>
                 </div>
-                <button type="submit" class="btn btn-primary">ログイン</button>
+
+                <!-- サービス内容 -->
+                <div class="question-group">
+                    <h3>サービス内容</h3>
+                    <p>提供されたサービスの内容について評価をお聞かせください。</p>
+                    <div class="rating-group">
+                        <label class="rating-item">
+                            <input type="radio" name="service" value="1" required>
+                            <span class="rating-text">1 - 非常に不満</span>
+                        </label>
+                        <label class="rating-item">
+                            <input type="radio" name="staff" value="2" required>
+                            <span class="rating-text">2 - 不満</span>
+                        </label>
+                        <label class="rating-item">
+                            <input type="radio" name="service" value="3" required>
+                            <span class="rating-text">3 - 普通</span>
+                        </label>
+                        <label class="rating-item">
+                            <input type="radio" name="service" value="4" required>
+                            <span class="rating-text">4 - 満足</span>
+                        </label>
+                        <label class="rating-item">
+                            <input type="radio" name="service" value="5" required>
+                            <span class="rating-text">5 - 非常に満足</span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- 利用目的 -->
+                <div class="question-group">
+                    <h3>利用目的</h3>
+                    <p>今回のサービス利用の目的をお選びください。（複数選択可）</p>
+                    <div class="checkbox-group">
+                        <label class="checkbox-item">
+                            <input type="checkbox" name="purpose" value="business">
+                            <span class="checkbox-text">ビジネス用途</span>
+                        </label>
+                        <label class="checkbox-item">
+                            <input type="checkbox" name="purpose" value="personal">
+                            <span class="checkbox-text">個人利用</span>
+                        </label>
+                        <label class="checkbox-item">
+                            <input type="checkbox" name="purpose" value="education">
+                            <span class="checkbox-text">教育・学習</span>
+                        </label>
+                        <label class="checkbox-item">
+                            <input type="checkbox" name="purpose" value="research">
+                            <span class="checkbox-text">研究・調査</span>
+                        </label>
+                        <label class="checkbox-item">
+                            <input type="checkbox" name="purpose" value="other">
+                            <span class="checkbox-text">その他</span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- 利用頻度 -->
+                <div class="question-group">
+                    <h3>利用頻度</h3>
+                    <p>弊社サービスのご利用頻度をお聞かせください。</p>
+                    <div class="select-group">
+                        <select name="frequency" required>
+                            <option value="">選択してください</option>
+                            <option value="first">初回利用</option>
+                            <option value="monthly">月に1回程度</option>
+                            <option value="weekly">週に1回程度</option>
+                            <option value="daily">ほぼ毎日</option>
+                            <option value="irregular">不定期</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- 特に良かった点 -->
+                <div class="question-group">
+                    <h3>特に良かった点</h3>
+                    <p>今回のサービスで特に良かった点があれば、具体的にお聞かせください。</p>
+                    <div class="textarea-group">
+                        <textarea name="good_points" placeholder="例：スタッフの対応が丁寧で、説明が分かりやすかった。"></textarea>
+                    </div>
+                </div>
+
+                <!-- 改善すべき点 -->
+                <div class="question-group">
+                    <h3>改善すべき点</h3>
+                    <p>今後のサービス向上のため、改善すべき点があればお聞かせください。</p>
+                    <div class="textarea-group">
+                        <textarea name="improvements" placeholder="例：待ち時間をもう少し短縮していただけると嬉しいです。"></textarea>
+                    </div>
+                </div>
+
+                <!-- その他のご意見 -->
+                <div class="question-group">
+                    <h3>その他のご意見・ご要望</h3>
+                    <p>何かご意見やご要望がございましたら、自由にお書きください。</p>
+                    <div class="textarea-group">
+                        <textarea name="comments" placeholder="ご自由にお書きください。"></textarea>
+                    </div>
+                </div>
+
+                <div class="submit-group">
+                    <button type="submit" class="submit-btn">アンケートを送信</button>
+                </div>
             </form>
-            <div id="login-error" class="error-message"></div>
         </div>
-    </div>
 
-    <!-- メイン管理画面 -->
-    <div id="main-container" class="container hidden">
-        <header class="header">
-            <h1>予約管理システム</h1>
-            <div class="header-actions">
-                <span id="logged-user" class="user-info"></span>
-                <button id="logout-btn" class="btn btn-secondary">ログアウト</button>
-            </div>
-        </header>
-
-        <nav class="nav-tabs">
-            <button class="tab-btn active" data-tab="today">今日の予約</button>
-            <button class="tab-btn" data-tab="upcoming">これからの予約</button>
-            <button class="tab-btn" data-tab="history">予約履歴</button>
-            <button class="tab-btn" data-tab="population">待ち人数</button>
-            <button class="tab-btn" data-tab="settings">設定</button>
-        </nav>
-
-        <main class="main-content">
-            <!-- 今日の予約タブ -->
-            <div id="today-tab" class="tab-content active">
-                <h2>今日の予約 <span id="today-date"></span></h2>
-                <div id="today-reservations" class="reservations-list"></div>
+        <!-- Review Request Page -->
+        <div class="page" id="reviewPage">
+            <div class="header">
+                <div class="success-icon">✓</div>
+                <h1>アンケートにご協力いただき、ありがとうございました！</h1>
+                <p>お客様からの貴重なご意見をいただき、心より感謝申し上げます。</p>
             </div>
 
-            <!-- これからの予約タブ -->
-            <div id="upcoming-tab" class="tab-content">
-                <h2>これからの予約</h2>
-                <div id="upcoming-reservations" class="reservations-list"></div>
-            </div>
-
-            <!-- 予約履歴タブ -->
-            <div id="history-tab" class="tab-content">
-                <h2>予約履歴</h2>
-                <div id="history-reservations" class="reservations-list"></div>
-            </div>
-
-            <!-- 待ち人数管理タブ -->
-            <div id="population-tab" class="tab-content">
-                <h2>待ち人数管理</h2>
-                <div class="population-control">
-                    <button id="decrease-btn" class="btn btn-secondary population-btn">-</button>
-                    <span id="current-population" class="population-number">0</span>
-                    <button id="increase-btn" class="btn btn-secondary population-btn">+</button>
-                </div>
-                <p class="population-label">現在の待ち人数</p>
-            </div>
-
-            <!-- 設定タブ -->
-            <div id="settings-tab" class="tab-content">
-                <h2>設定</h2>
-                <div class="settings-section">
-                    <h3>パスワード変更</h3>
-                    <form id="password-change-form">
-                        <div class="input-group">
-                            <label for="old-password">現在のパスワード</label>
-                            <input type="password" id="old-password" name="old-password" required>
-                        </div>
-                        <div class="input-group">
-                            <label for="new-password">新しいパスワード</label>
-                            <input type="password" id="new-password" name="new-password" required>
-                        </div>
-                        <div class="input-group">
-                            <label for="confirm-password">新しいパスワード（確認）</label>
-                            <input type="password" id="confirm-password" name="confirm-password" required>
-                        </div>
-                        <button type="submit" class="btn btn-primary">パスワード変更</button>
-                    </form>
-                </div>
-            </div>
-        </main>
-    </div>
-
-    <!-- メール送信モーダル -->
-    <div id="email-modal" class="modal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h3>メール送信</h3>
-                <button class="close-btn" onclick="closeEmailModal()">&times;</button>
-            </div>
-            <div class="modal-body">
-                <div class="email-recipient">
-                    <strong>宛先:</strong> <span id="email-recipient-address"></span>
-                </div>
-                <div class="template-section">
-                    <h4>定型文</h4>
-                    <div id="email-templates" class="template-list"></div>
-                </div>
-                <form id="email-form">
-                    <div class="input-group">
-                        <label for="email-subject">件名</label>
-                        <input type="text" id="email-subject" name="email-subject" required>
+            <div class="review-request">
+                <h2>🌟 Googleでの口コミをお願いします</h2>
+                <p>もしよろしければ、他のお客様の参考のためにも、Googleマップでの口コミ投稿にご協力をお願いいたします。</p>
+                
+                <div class="review-text-container">
+                    <h3>口コミ用文章（コピーしてご利用ください）</h3>
+                    <div class="review-text" id="reviewText">
+                        <!-- JavaScriptで生成されます -->
                     </div>
-                    <div class="input-group">
-                        <label for="email-body">本文</label>
-                        <textarea id="email-body" name="email-body" rows="10" required></textarea>
-                    </div>
-                    <div class="modal-actions">
-                        <button type="button" class="btn btn-secondary" onclick="closeEmailModal()">キャンセル</button>
-                        <button type="submit" class="btn btn-primary">送信</button>
-                    </div>
-                </form>
+                    <button class="copy-btn" onclick="copyReviewText()">📋 文章をコピー</button>
+                </div>
+
+                <div class="review-actions">
+                    <a href="https://www.google.co.jp/maps/place/%E6%9D%B1%E4%BA%AC%E5%B7%A5%E6%A5%AD%E9%AB%98%E7%AD%89%E5%B0%82%E9%96%80%E5%AD%A6%E6%A0%A1/@35.63838,139.2956338,16.58z/data=!3m1!5s0x60191c1c636ef409:0x21a8d8e184eb2041!4m6!3m5!1s0x60191c1be481e4bb:0xa7e7367cc6b3fd!8m2!3d35.6386238!4d139.299028!16s%2Fg%2F1211jlmy!5m1!1e2?hl=ja&entry=ttu&g_ep=EgoyMDI1MDcxMy4wIKXMDSoASAFQAw%3D%3D" 
+                       target="_blank" class="review-btn">
+                        📍 Googleマップで口コミを投稿
+                    </a>
+                </div>
+                
+                <p class="review-note">
+                    ※ 口コミの投稿は任意です。お時間のある時にご協力いただければ幸いです。
+                </p>
+            </div>
+        </div>
+
+        <!-- Thank You Page -->
+        <div class="page" id="thankYouPage">
+            <div class="header">
+                <div class="success-icon">✓</div>
+                <h1>ご回答ありがとうございました</h1>
+                <p>貴重なご意見をいただき、誠にありがとうございます。<br>
+                今後ともどうぞよろしくお願いいたします。</p>
             </div>
         </div>
     </div>
 
-    <!-- 確認モーダル -->
-    <div id="confirm-modal" class="modal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h3>確認</h3>
-            </div>
-            <div class="modal-body">
-                <p id="confirm-message"></p>
-                <div class="modal-actions">
-                    <button type="button" class="btn btn-secondary" onclick="closeConfirmModal()">いいえ</button>
-                    <button type="button" class="btn btn-primary" onclick="confirmAction()">はい</button>
-                </div>
-            </div>
-        </div>
-    </div>
+    <script>
+// アンケートデータを保存する変数
+let surveyData = {};
 
-    <!-- ローディング -->
-    <div id="loading" class="loading hidden">
-        <div class="loading-spinner"></div>
-        <p>処理中...</p>
-    </div>
+// DOM要素の取得
+const surveyForm = document.getElementById('surveyForm');
+const surveyPage = document.getElementById('surveyPage');
+const reviewPage = document.getElementById('reviewPage');
+const thankYouPage = document.getElementById('thankYouPage');
+const reviewText = document.getElementById('reviewText');
 
-    <!-- 通知 -->
-    <div id="notification" class="notification hidden">
-        <span id="notification-message"></span>
-        <button class="notification-close" onclick="closeNotification()">&times;</button>
-    </div>
+// ページ遷移関数
+function showPage(targetPage) {
+    // すべてのページを非表示
+    document.querySelectorAll('.page').forEach(page => {
+        page.classList.remove('active');
+    });
+    
+    // ターゲットページを表示
+    setTimeout(() => {
+        targetPage.classList.add('active');
+    }, 300);
+}
 
-    <script src="script.js"></script>
+// 口コミ用文章を生成する関数
+function generateReviewText(data) {
+    const overallRating = parseInt(data.overall);
+    const staffRating = parseInt(data.staff);
+    const serviceRating = parseInt(data.service);
+    
+    // 星の数を計算（総合満足度を基準）
+    const stars = '★'.repeat(overallRating) + '☆'.repeat(5 - overallRating);
+    
+    // 基本的な口コミ文章のテンプレート
+    let reviewTemplate = `${stars}\n\n`;
+    
+    // 満足度に応じた文章
+    if (overallRating >= 5) {
+        reviewTemplate += '非常に満足のいくサービスでした。';
+    } else if (overallRating >= 4) {
+        reviewTemplate += '満足のいくサービスでした。';
+    }
+    
+    // スタッフ評価の追加
+    if (staffRating >= 4) {
+        reviewTemplate += 'スタッフの対応も丁寧で、';
+    }
+    
+    // サービス内容の追加
+    if (serviceRating >= 4) {
+        reviewTemplate += 'サービス内容も充実していました。';
+    }
+    
+    // 良かった点の追加
+    if (data.good_points && data.good_points.trim()) {
+        reviewTemplate += `\n\n特に良かった点：\n${data.good_points.trim()}`;
+    }
+    
+    // 利用目的の追加
+    if (data.purpose && data.purpose.length > 0) {
+        const purposeTexts = {
+            'business': 'ビジネス',
+            'personal': '個人利用',
+            'education': '教育・学習',
+            'research': '研究・調査',
+            'other': 'その他'
+        };
+        
+        const purposes = data.purpose.map(p => purposeTexts[p]).join('、');
+        reviewTemplate += `\n\n利用目的：${purposes}`;
+    }
+    
+    // 利用頻度の追加
+    if (data.frequency) {
+        const frequencyTexts = {
+            'first': '初回利用',
+            'monthly': '月1回程度利用',
+            'weekly': '週1回程度利用',
+            'daily': 'ほぼ毎日利用',
+            'irregular': '不定期利用'
+        };
+        
+        reviewTemplate += `\n\n利用頻度：${frequencyTexts[data.frequency]}`;
+    }
+    
+    reviewTemplate += '\n\nまた利用したいと思います。';
+    
+    return reviewTemplate;
+}
+
+// 口コミ文章をコピーする関数
+function copyReviewText() {
+    const textToCopy = reviewText.textContent;
+    
+    // Clipboard APIを使用してコピー
+    navigator.clipboard.writeText(textToCopy).then(() => {
+        // コピー成功時のフィードバック
+        const copyBtn = document.querySelector('.copy-btn');
+        const originalText = copyBtn.textContent;
+        
+        copyBtn.textContent = '✓ コピーしました！';
+        copyBtn.classList.add('copy-success');
+        
+        setTimeout(() => {
+            copyBtn.textContent = originalText;
+            copyBtn.classList.remove('copy-success');
+        }, 2000);
+    }).catch(err => {
+        console.error('コピーに失敗しました:', err);
+        alert('コピーに失敗しました。手動で選択してコピーしてください。');
+    });
+}
+
+// フォームデータを収集する関数
+function collectFormData() {
+    const formData = new FormData(surveyForm);
+    const data = {};
+    
+    // 単一選択項目の処理
+    data.overall = formData.get('overall');
+    data.staff = formData.get('staff');
+    data.service = formData.get('service');
+    data.frequency = formData.get('frequency');
+    
+    // 複数選択項目の処理
+    data.purpose = formData.getAll('purpose');
+    
+    // テキストエリアの処理
+    data.good_points = formData.get('good_points');
+    data.improvements = formData.get('improvements');
+    data.comments = formData.get('comments');
+    
+    return data;
+}
+
+// フォーム送信処理
+surveyForm.addEventListener('submit', function(e) {
+    e.preventDefault();
+    
+    console.log('フォーム送信開始');
+    
+    // ローディング状態を表示
+    document.body.classList.add('loading');
+    
+    // フォームデータを収集
+    surveyData = collectFormData();
+    
+    console.log('収集したデータ:', surveyData);
+    
+    // 送信処理のシミュレーション
+    setTimeout(() => {
+        document.body.classList.remove('loading');
+        
+        // 総合満足度に基づいて遷移先を決定
+        const overallRating = parseInt(surveyData.overall);
+        
+        console.log('総合満足度:', overallRating);
+        
+        if (overallRating >= 4) {
+            // 満足度4以上の場合は口コミ依頼ページへ
+            const generatedReview = generateReviewText(surveyData);
+            reviewText.textContent = generatedReview;
+            showPage(reviewPage);
+            console.log('口コミページに遷移');
+        } else {
+            // 満足度3以下の場合はありがとうページへ
+            showPage(thankYouPage);
+            console.log('ありがとうページに遷移');
+        }
+    }, 1500);
+});
+
+// 初期化処理
+document.addEventListener('DOMContentLoaded', function() {
+    console.log('アンケートページが初期化されました');
+    
+    // フォームの送信ボタンが正しく動作するかテスト
+    const submitBtn = document.querySelector('.submit-btn');
+    if (submitBtn) {
+        console.log('送信ボタンが見つかりました');
+    } else {
+        console.error('送信ボタンが見つかりません');
+    }
+});
+    </script>
 </body>
 </html>
